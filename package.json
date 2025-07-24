@@ -1,0 +1,28 @@
+{
+  "name": "@gambaree/app",
+  "author": "NOuSantx <https://github.com/nousantx>",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "type:check": "tsc -b"
+  },
+  "dependencies": {
+    "preact": "^10.25.3"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.9.3",
+    "@remixicon/react": "^4.6.0",
+    "@tenoxui/core": "^2.0.0",
+    "@tenoxui/moxie": "^0.7.1",
+    "@tenoxui/preset-tailwind": "^1.0.3",
+    "@types/node": "^22.10.2",
+    "tenoxui": "^1.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
+}
