@@ -1,6 +1,7 @@
 import { useCallback } from 'preact/hooks'
 import { RefObject } from 'preact'
-import { generateHTML, generateSVG } from '@app/src/utils/generator'
+import { generateHTML } from '@app/src/utils/generator/html'
+import { generateSVG } from '@app/src/utils/generator/svg'
 
 export function useImageGeneration(
   canvasRef: RefObject<HTMLCanvasElement>,

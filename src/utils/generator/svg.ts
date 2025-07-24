@@ -1,5 +1,5 @@
 import { render, ui } from '@tenoxui-lib'
-import { styles } from '@/styles'
+import { styles as resetter } from '@/styles'
 import { FontFace } from '../parseFont'
 
 export async function generateSVG(
@@ -27,7 +27,7 @@ export async function generateSVG(
           /* custom font here */
           (await new FontFace('custom-fonts').load()).replaceAll('\\n', '\n')
         }
-        ${ui.render(styles, styles)}
+        ${ui.render(resetter, styles)}
         ${render(temp)}
       ]]>
     </style>

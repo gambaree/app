@@ -1,23 +1,41 @@
-<p align='center'>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nousantx/code-to-image-generator/refs/heads/main/.github/logo-light.png">
-    <img alt="Code to Image Logo" width="100%" src="https://raw.githubusercontent.com/nousantx/code-to-image-generator/refs/heads/main/.github/logo-dark.png">
-  </picture>
-</p>
+# Gambaree/app
 
-# Code-to-Image Generator
-
-A simple and lightweight code-to-image generator, style with a utility-first class names for faster styling, a real-time editor with syntax highlighter, directly in your browser.
+A simple, lightweight, component-based (JSX) code to image with utility-first class name as styling.
 
 ## Features
 
-- **Lightweight** - Built with preactjs for main canvas, and TenoxUI for the styles.
-- **Interactive Editor** - A realtime live preview, with in-browser editor with realtime syntax-highlighter.
+- **Lightweight** - Built with preactjs, and TenoxUI for the styles.
 - **Utility-First Based** - Fast styling solution using atomic CSS approach.
-- **Faster with JSX** - Write faster with component-based support! (dev mode only!)
-- **Custom Font** - It's easy to add fonts to the design!
-- **Support All CSS Properties** - Use any CSS baseline properties that _widely available_ to create modern and faster styling.
+- **Faster with JSX** - Write faster with component-based support.
+- **Downloadable Design** - Save your design into image with a single click.
+
+## Getting Started
+
+1. Clone the Repository
+
+```bash
+git clone https://github.com/gambaree/app
+cd app
+```
+
+2. Install Dependencies
+
+```bash
+pnpm
+```
+
+3. Start the App
+
+```bash
+pnpm start
+```
+
+3. Start Writing the Code
+
+Open file `src/design/index.tsx` and start writing your JSX code as usual ✨
+
+> You can find some templates under `src/design/templates` directory.
 
 ## License
 
-MIT 2025 © NOuSantx
+MIT © 2025 NOuSantx

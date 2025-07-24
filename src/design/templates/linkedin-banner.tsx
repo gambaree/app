@@ -11,16 +11,16 @@ export const config: DesignOptions = {
   width,
   height,
   scale: 1,
-  format: 'jpg',
-  control: false,
-  full: true,
+  format: 'png',
+  control: true,
+  full: false,
   name: 'LinkedIn Banner'
 }
 
 export const Content = () => {
   return (
     <div
-      className={`w-${width}px h-${height}px bg-neutral-950 text-neutral-50 flex overflow-hidden relative isolate items-center justify-center`}
+      className={`w-${width}px h-${height}px bg-slate-50 text-slate-950 flex overflow-hidden relative isolate items-center justify-center`}
     >
       <div
         className={`[width,maxWidth]-[${
@@ -72,7 +72,7 @@ export const Content = () => {
       <div
         className={`[width,maxWidth]-[${
           width / 2
-        }px] h-full flex items-center justify-center bg-slate-950/20`}
+        }px] h-full flex items-center justify-center bg-slate-500/10`}
       >
         <header className="text-pretty">
           <h1 className="font-medium tracking-tighter text-16 leading-[1]">

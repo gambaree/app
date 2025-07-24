@@ -15,13 +15,6 @@ export type DesignOptions = {
   styles?: Record<string, string>
 }
 
-interface DesignConfig {
-  width: number
-  height: number
-  scale: number
-  format: AvailableFormats
-}
-
 interface DeclarativeDesignProps {
   children: React.ReactNode
   width?: number
@@ -51,12 +44,6 @@ export function DeclarativeDesign({
 }: DeclarativeDesignProps) {
   const [htmlContent, setHtmlContent] = useState('')
   const [error, setError] = useState('')
-  const [config, setConfig] = useState<DesignConfig>({
-    width,
-    height,
-    scale,
-    format
-  })
   const [isDownloadSectionActive, setIsDownloadSectionActive] = useState(false)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -66,10 +53,10 @@ export function DeclarativeDesign({
   const { generateImage, downloadImage } = useImageGeneration(
     canvasRef,
     htmlContent,
-    config.width,
-    config.height,
-    config.scale,
-    config.format,
+    width,
+    height,
+    scale,
+    format,
     setError,
     fileName,
     styles
@@ -167,8 +154,8 @@ export function DeclarativeDesign({
               <div className="mt-4 relative overflow-auto border rounded-lg p-4 border-neutral-500/70 bg-emerald-50 dark:bg-emerald-950">
                 <canvas
                   ref={canvasRef}
-                  width={config.width}
-                  height={config.height}
+                  width={width}
+                  height={height}
                   className="w-full block max-w-full max-h-96 object-contain"
                 />
               </div>
@@ -176,10 +163,10 @@ export function DeclarativeDesign({
 
             <div className="my-4 text-sm text-neutral-800 dark:text-neutral-200 px-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                <div>Width: {config.width}px</div>
-                <div>Height: {config.height}px</div>
-                <div>Scale: {config.scale}x</div>
-                <div>Format: {config.format.toUpperCase()}</div>
+                <div>Width: {width}px</div>
+                <div>Height: {height}px</div>
+                <div>Scale: {scale}x</div>
+                <div>Format: {format.toUpperCase()}</div>
               </div>
             </div>
 
