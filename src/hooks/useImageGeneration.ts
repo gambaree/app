@@ -1,9 +1,9 @@
 import { useCallback } from 'preact/hooks'
 import { RefObject } from 'preact'
-import { generateHTML } from '@app/src/utils/generator/html'
-import { generateSVG } from '@app/src/utils/generator/svg'
+import { generateHTML } from '@/utils/generator/html'
+import { generateSVG } from '@/utils/generator/svg'
 import { jsPDF } from 'jspdf'
-import { extractTextPositions } from '../utils/generator/pdf/textPositionExtractor'
+import { extractTextPositions } from '@/utils/generator/pdf/textPositionExtractor'
 
 export function useImageGeneration(
   canvasRef: RefObject<HTMLCanvasElement>,
@@ -92,8 +92,7 @@ export function useImageGeneration(
 
       // Extract text elements and their positions from DOM and -
       // create invisible text layer for some text-reader to work.
-       extractTextPositions(htmlContent, scale)
-      .forEach(({ text, x, y, fontSize, fontFamily }) => {
+      extractTextPositions(htmlContent, scale).forEach(({ text, x, y, fontSize, fontFamily }) => {
         pdf.setFont(fontFamily || 'helvetica')
         pdf.setFontSize(fontSize || 12)
         pdf.setTextColor(255, 255, 255, 0)

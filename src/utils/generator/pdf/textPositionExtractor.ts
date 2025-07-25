@@ -1,6 +1,4 @@
 export function extractTextPositions(htmlContent: string, scale: number) {
-  
-  
   const textElements: Array<{
     text: string
     x: number
@@ -9,7 +7,12 @@ export function extractTextPositions(htmlContent: string, scale: number) {
     fontFamily?: string
   }> = []
 
-  const walker = document.createTreeWalker(new DOMParser().parseFromString(htmlContent, 'text/html').body, NodeFilter.SHOW_TEXT, null, false)
+  const walker = document.createTreeWalker(
+    new DOMParser().parseFromString(htmlContent, 'text/html').body,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  )
 
   let node
   while ((node = walker.nextNode())) {

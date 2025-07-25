@@ -1,9 +1,9 @@
 import { TenoxUI } from 'tenoxui'
-import config from '@app/tenoxui.config'
+import config from '@/styles/tenoxui.config'
 
-const ui = new TenoxUI(config.css)
+export const ui = new TenoxUI(config)
 
-function render(node: Document | Element): string {
+export function render(node: Document | Element): string {
   const elements = node.querySelectorAll('*')
   const classNames: string[] = []
   elements.forEach((element: Element) => {
@@ -16,4 +16,4 @@ function render(node: Document | Element): string {
   return ui.render(Array.from(new Set(classNames)))
 }
 
-export { ui, render }
+export default { ui, render }
