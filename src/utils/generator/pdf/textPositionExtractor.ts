@@ -9,9 +9,7 @@ export function extractTextPositions(htmlContent: string, scale: number) {
 
   const walker = document.createTreeWalker(
     new DOMParser().parseFromString(htmlContent, 'text/html').body,
-    NodeFilter.SHOW_TEXT,
-    null,
-    false
+    NodeFilter.SHOW_TEXT
   )
 
   let node

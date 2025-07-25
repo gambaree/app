@@ -1,4 +1,4 @@
-export async function encodeImages(node: HTMLElement, scale?: number): Promise<void> {
+export async function encodeImages(node: HTMLElement, scale: number = 1): Promise<void> {
   const images = node.querySelectorAll('img')
 
   await Promise.all(
@@ -21,7 +21,7 @@ export async function encodeImages(node: HTMLElement, scale?: number): Promise<v
 
         // rescale image to match input scale
         // check if the image has dynamic width
-        if ((img.className && !img.className.contain('w-')) || !img.className.contain('size-')) {
+        if ((img.className && !img.className.includes('w-')) || !img.className.includes('size-')) {
           // if no, just fit the image into container
           img.classList.add(`[transform]-[scale(${1 / scale})]`, '[transform-origin]-[top_left]')
         }
