@@ -20,6 +20,7 @@
     "@tenoxui/moxie": "^0.7.1",
     "@tenoxui/preset-tailwind": "^1.0.3",
     "@types/node": "^22.10.2",
+    "jspdf": "^3.0.1",
     "tenoxui": "^1.0.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.5"
