@@ -1,8 +1,16 @@
 import { useState, useRef, useEffect, useCallback } from 'preact/hooks'
 import { useImageGeneration } from '../hooks/useImageGeneration'
-import { RiRefreshLine, RiDownloadLine, RiSideBarLine, RiCloseLine } from '@remixicon/react'
+import { useTheme } from '@/hooks/useTheme'
+import {
+  RiRefreshLine,
+  RiDownloadLine,
+  RiSideBarLine,
+  RiCloseLine,
+  RiMoonClearLine,
+  RiSunLine
+} from '@remixicon/react'
 
-type AvailableFormats = 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg' | 'html'
+type AvailableFormats = 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg' | 'html' | 'pdf'
 
 export type DesignOptions = {
   width: number
@@ -42,6 +50,7 @@ export function DeclarativeDesign({
   full = true,
   styles = {}
 }: DeclarativeDesignProps) {
+  const { isDark, toggleTheme } = useTheme()
   const [htmlContent, setHtmlContent] = useState('')
   const [error, setError] = useState('')
   const [isDownloadSectionActive, setIsDownloadSectionActive] = useState(false)
@@ -125,6 +134,12 @@ export function DeclarativeDesign({
 
       {showControls && (
         <>
+          <button
+            onClick={toggleTheme}
+            class="fixed bottom-16 right-4 z-1000 size-35px rounded-6px flex items-center justify-center [&_svg]:size-16px bg-neutral-950 hover:bg-neutral-800 text-neutral-50 transition-colors dark:bg-neutral-50 dark:text-neutral-950"
+          >
+            {isDark ? <RiMoonClearLine /> : <RiSunLine />}
+          </button>
           <button
             onClick={toggleDownloadSection}
             className="fixed bottom-4 right-4 z-1002 size-35px size-35px rounded-6px flex items-center justify-center [&_svg]:size-16px bg-neutral-950 hover:bg-neutral-800 text-neutral-50 transition-colors dark:bg-neutral-50 dark:text-neutral-950"
