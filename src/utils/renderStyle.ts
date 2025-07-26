@@ -1,5 +1,6 @@
 import { TenoxUI } from 'tenoxui'
 import config from '@/styles/tenoxui.config'
+import { config as designConfig } from '@/design'
 
 export const ui = new TenoxUI(config)
 
@@ -13,7 +14,7 @@ export function render(node: Document | Element): string {
       })
     }
   })
-  return ui.render(Array.from(new Set(classNames)))
+  return ui.render(Array.from(new Set(classNames)), designConfig.styles || {})
 }
 
 export default { ui, render }

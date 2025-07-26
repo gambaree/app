@@ -2,13 +2,15 @@ import { render, ui } from '@tenoxui-lib'
 import { styles as resetter } from '@/styles'
 import { FontFace } from '../parseFont'
 import { encodeImages } from '../encodeImages'
+import { extractCSS, encodeCSS } from '../extractCSS'
+import { fonts, externalCSS } from '@/styles'
 
 export async function generateSVG(
   htmlContent: string,
   width: number,
   height: number,
   scale: number = 1,
-  styles: Record<string, string> = {}
+  styles: Record<string, string | string[]> = {}
 ): Promise<string> {
   try {
     const temp = document.createElement('div')
@@ -19,13 +21,16 @@ export async function generateSVG(
     }
     await encodeImages(temp, scale)
 
-    const svgData = `<?xml version="1.0" encoding="UTF-8"?>
+    return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
   <defs>
     <style>
       <![CDATA[
-        ${(await new FontFace('google-fonts').load()).replaceAll('\\n', '\n')}
+        ${(
+          await Promise.all(fonts.map(async (font) => encodeCSS(await new FontFace(font).load())))
+        ).join('\n')}
+        ${(await extractCSS(externalCSS)).join('\n')}
         ${ui.render(resetter, styles)}
         ${render(temp)}
       ]]>
@@ -34,15 +39,9 @@ export async function generateSVG(
   <foreignObject width="100%" height="100%">
     <html xmlns="http://www.w3.org/1999/xhtml">${temp.innerHTML}</html>
   </foreignObject>
-</svg>`
-
-    return (
-      svgData
-        // .replace(/>\s+</g, '><')
-        .replace(
-          /<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)(\s[^>]*)?(?<!\/)\>/gi,
-          '<$1$2/>'
-        )
+</svg>`.replace(
+      /<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)(\s[^>]*)?(?<!\/)\>/gi,
+      '<$1$2/>'
     )
   } catch (error) {
     throw new Error(

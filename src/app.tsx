@@ -1,5 +1,7 @@
-import { DeclarativeDesign, DesignOptions } from './components/designControl'
+import { Design } from './components/designControl'
 import { Content, config } from '@/design'
+import { getName } from './utils/getName'
+import type { Config } from './types'
 
 export function App() {
   const {
@@ -7,15 +9,11 @@ export function App() {
     height = 1000,
     scale = 1,
     format = 'jpg',
-    name = `untitled-${new Date()
-      .toISOString()
-      .slice(2, 19)
-      .replace(/[-:]/g, '')
-      .replace('T', '-')}`,
+    name = getName('untitled'),
     control = true,
     full = false,
     styles = {}
-  }: DesignOptions = config
+  }: Config = config
 
   if (!control) {
     return (
@@ -28,7 +26,7 @@ export function App() {
   const clamp = (scale: number, max: number, min: number): number => (scale > max ? min : scale)
 
   return (
-    <DeclarativeDesign
+    <Design
       width={clamp(width, 5000, 1000)}
       height={clamp(height, 5000, 1000)}
       scale={clamp(scale, 5, 1)}
@@ -40,6 +38,6 @@ export function App() {
       styles={styles}
     >
       <Content />
-    </DeclarativeDesign>
+    </Design>
   )
 }

@@ -4,6 +4,7 @@ import { generateHTML } from '@/utils/generator/html'
 import { generateSVG } from '@/utils/generator/svg'
 import { jsPDF } from 'jspdf'
 import { extractTextPositions } from '@/utils/generator/pdf/textPositionExtractor'
+import { getName } from '@/utils/getName'
 
 export function useImageGeneration(
   canvasRef: RefObject<HTMLCanvasElement>,
@@ -14,7 +15,7 @@ export function useImageGeneration(
   outputFormat: string,
   setError: (error: string) => void,
   fileName?: string,
-  styles?: Record<string, string>
+  styles?: Record<string, string | string[]>
 ) {
   const generateImage = useCallback(async () => {
     try {
@@ -99,13 +100,7 @@ export function useImageGeneration(
         pdf.text(text, x, y)
       })
 
-      const pdfFileName =
-        (fileName ||
-          `generated-${new Date()
-            .toISOString()
-            .slice(2, 19)
-            .replace(/[-:]/g, '')
-            .replace('T', '-')}`) + '.pdf'
+      const pdfFileName = (fileName || getName('generated')) + '.pdf'
 
       pdf.save(pdfFileName)
     } catch (error) {
@@ -124,13 +119,7 @@ export function useImageGeneration(
       }
 
       const link = document.createElement('a')
-      link.download =
-        (fileName ||
-          `generated-${new Date()
-            .toISOString()
-            .slice(2, 19)
-            .replace(/[-:]/g, '')
-            .replace('T', '-')}`) + `.${outputFormat}`
+      link.download = (fileName || getName('generated')) + `.${outputFormat}`
 
       if (outputFormat === 'svg') {
         const svgData = await generateSVG(htmlContent, width * scale, height * scale, scale, styles)

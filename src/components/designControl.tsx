@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'preact/hooks'
 import { useImageGeneration } from '../hooks/useImageGeneration'
 import { useTheme } from '@/hooks/useTheme'
+import type { AvailableFormats } from '@/types'
 import {
   RiRefreshLine,
   RiDownloadLine,
@@ -10,20 +11,7 @@ import {
   RiSunLine
 } from '@remixicon/react'
 
-type AvailableFormats = 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg' | 'html' | 'pdf'
-
-export type DesignOptions = {
-  width: number
-  height: number
-  name?: string
-  scale?: number
-  format?: AvailableFormats
-  control?: boolean
-  full?: boolean
-  styles?: Record<string, string>
-}
-
-interface DeclarativeDesignProps {
+interface DesignProps {
   children: React.ReactNode
   width?: number
   height?: number
@@ -34,10 +22,10 @@ interface DeclarativeDesignProps {
   className?: string
   fileName?: string
   full?: boolean
-  styles?: Record<string, string>
+  styles?: Record<string, string | string[]>
 }
 
-export function DeclarativeDesign({
+export function Design({
   children,
   width = 1000,
   height = 1000,
@@ -49,7 +37,7 @@ export function DeclarativeDesign({
   fileName = '',
   full = true,
   styles = {}
-}: DeclarativeDesignProps) {
+}: DesignProps) {
   const { isDark, toggleTheme } = useTheme()
   const [htmlContent, setHtmlContent] = useState('')
   const [error, setError] = useState('')
@@ -198,4 +186,5 @@ export function DeclarativeDesign({
   )
 }
 
-export default DeclarativeDesign
+export type { AvailableFormats, Config } from '@/types'
+export default Design

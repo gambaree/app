@@ -13,5 +13,5 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(./font.woff2) format('woff2');
+  src: url(./font.example) format('example-format');
 }

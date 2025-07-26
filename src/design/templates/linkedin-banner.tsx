@@ -2,17 +2,17 @@
  * a simple LinkedIn banner template, ready to edit and use.
  */
 
-import { DesignOptions } from '@/components/designControl'
+import type { Config } from '@/types'
 
 const width = 1584
 const height = 396
 
-export const config: DesignOptions = {
+export const config: Config = {
   width,
   height,
   scale: 1,
   format: 'png',
-  control: true,
+  control: false,
   full: false,
   name: 'LinkedIn Banner'
 }
